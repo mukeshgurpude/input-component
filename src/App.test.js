@@ -2,8 +2,14 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('Sidebar exists in the document', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const header = screen.getByRole('header');
+  expect(header).toBeInTheDocument();
 });
+
+test('Main UI exists', () => {
+  render(<App />);
+  const main = screen.getByRole('main');
+  expect(main).toBeInTheDocument();
+})
