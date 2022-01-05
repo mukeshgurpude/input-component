@@ -8,12 +8,12 @@ export default function Sidebar() {
     {text: 'Inputs', link: '/', active: true},
   ]
   return <Header role='header'>
-    <Logo>Devchallenges.io</Logo>
+    <Logo><span style={{color: '#F7542E'}}>Dev</span>challenges.io</Logo>
     <NavList>
       {
         links.map((link, index) => {
-          return <NavItem key={index} active={!!link.active}>
-            <NavLink to={link.link}>{link.text}</NavLink>
+          return <NavItem key={index}>
+            <NavLink href={link.link} active={!!link.active}>{link.text}</NavLink>
           </NavItem>
         })
       }
@@ -21,8 +21,25 @@ export default function Sidebar() {
   </Header>
 }
 
-const Header = styled.header``
-const Logo = styled.div``
-const NavList = styled.ul``
+const Header = styled.header`
+  display: flex;
+  flex-flow: column;
+  row-gap: 1rem;
+  padding: 1rem;
+  background-color: #FAFBFD;
+`
+const Logo = styled.h2``
+const NavList = styled.ul`
+  display: flex;
+  flex-flow: column;
+  row-gap: 1rem;
+  list-style: none;
+`
 const NavItem = styled.li``
-const NavLink = styled.a``
+const NavLink = styled.a`
+  color: #9E9E9E;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none !important;
+  ${props => props.active ? ';color: #000;' : ''}
+`

@@ -3,7 +3,7 @@ import Sidebar from '../components/sidebar.jsx'
 
 test('Has a logo', () => {
   render(<Sidebar />)
-  const logo = screen.getByText(/Devchallenges.io/i)
+  const logo = screen.getByText((_, node) => node.textContent.match(/^Devchallenges.io$/))
   expect(logo).toBeInTheDocument()
 })
 test('Has a list of links', () => {
