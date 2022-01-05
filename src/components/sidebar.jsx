@@ -41,5 +41,5 @@ const NavLink = styled.a`
   font-size: 1rem;
   font-weight: 500;
   text-decoration: none !important;
-  ${props => props.active ? ';color: #000;' : ''}
+  ${props => props.active && ';color: #000;'}
 `
