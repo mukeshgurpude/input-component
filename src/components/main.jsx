@@ -9,7 +9,7 @@ function Child ({text, children}) {
 }
 
 export function InputContainer ({children: Children, emulate, text, ...props}) {
-  if (!!emulate) {
+  if (!!emulate) {  // Emulate hover and focus ui
     return <Parent>
       <Child text={`<Input ${text} />`} children={<Children {...props} />} />
       <Child text={'&:hover'} children={<Children {...props} hover />} />
@@ -27,6 +27,11 @@ export default function Main() {
     <InputContainer children={Input} emulate text='' />
     <InputContainer children={Input} error emulate text='error' />
     <InputContainer children={Input} disabled text='disabled' />
+    <InputContainer children={Input} value='Text' text='value="Text"' />
+    <Parent>
+      <InputContainer children={Input} size='sm' text='size="sm"' />
+      <InputContainer children={Input} size='md' text='size="md"' />
+    </Parent>
     <InputContainer children={Input} fullWidth text='fullWidth' />
     <InputContainer children={Input} multiline text='multiline' />
   </Container>
@@ -40,6 +45,6 @@ const Container = styled.main`
 
 const Parent = styled.div`
   display: flex;
-  justify-content: space-between;
   flex-flow: wrap;
+  gap: 2rem;
 `
