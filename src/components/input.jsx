@@ -7,6 +7,8 @@ export default function Input(props) {
     error: !!props.error,
     fullWidth: !!props.fullWidth,
     multiline: !!props.multiline,
+    hover: !!props.hover,
+    focus: !!props.focus,
     rows: props.row || 3,
     size: props.size || "md",
     helperText: props.helperText || "",
@@ -48,7 +50,12 @@ const genericinput = css`
   ${({error}) => error && 
     '--border-color: #D84949;--border-color-hover: #333;--border-color-focus: #D32F2F;'}
   ${({disabled}) => disabled &&
-    ';opacity: 0.5;--border-color: #828282;--border-color-hover: #333333;--border-color-focus: #2962FF;'}
+    'opacity: 0.5;--border-color: #828282;--border-color-hover: #333333;--border-color-focus: #2962FF;'}
+
+  ${({hover}) => hover &&
+    '--border-color: var(--border-color-hover);'}
+  ${({focus}) => focus &&
+    '--border-color: var(--border-color-focus);'}
 `
 const Text = styled.input`
   ${genericinput}
