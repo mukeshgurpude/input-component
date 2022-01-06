@@ -3,7 +3,7 @@ import Input from './input';
 
 function Child ({text, children}) {
   return <div>
-    <h4>{text}</h4>
+    <h5>{text}</h5>
     {children}
   </div>
 }
@@ -11,21 +11,13 @@ function Child ({text, children}) {
 export function InputContainer ({children: Children, emulate, text, ...props}) {
   if (!!emulate) {
     return <Parent>
-      <Child text={`<Input ${text} />`} >
-        <Children {...props} />
-      </Child>
-      <Child text={'&:hover'}>
-        <Children {...props} hover />
-      </Child>
-      <Child text={'&:focus'}>
-        <Children {...props} focus />
-      </Child>
+      <Child text={`<Input ${text} />`} children={<Children {...props} />} />
+      <Child text={'&:hover'} children={<Children {...props} hover />} />
+      <Child text={'&:focus'} children={<Children {...props} focus />} />
     </Parent>
   }
   return <>
-    <Child text={`<Input ${text} />`}>
-      <Children {...props} />
-    </Child>
+    <Child text={`<Input ${text} />`} children={<Children {...props} />} />
   </>
 }
 
