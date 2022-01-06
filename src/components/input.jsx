@@ -1,7 +1,10 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
 
-export default function Input({value: Value, helperText, ...props}) {
+export default function Input({
+    value: Value, helperText, 
+    startIcon, endIcon, ...props
+  }) {
   const mappedProps = {
     disabled: !!props.disabled,
     error: !!props.error,
@@ -9,10 +12,12 @@ export default function Input({value: Value, helperText, ...props}) {
     multiline: !!props.multiline,
     hover: !!props.hover,
     focus: !!props.focus,
+    startIcon: !!startIcon,
+    endIcon: !!endIcon,
     rows: props.row || 3,
     size: props.size || "md",
     helperText: props.helperText || "",
-    placeholder: props.placeholder || "Placeholder",
+    placeholder: props.placeholder || "Placeholder"
   }
   const label = props.label || 'Label'
   const [value, setValue] = useState(Value || '');
@@ -20,13 +25,25 @@ export default function Input({value: Value, helperText, ...props}) {
   return <Container {...mappedProps}>
     <Label>
       <span>{label}</span>
-      {
-        props.multiline
-        ?
-        <MultiText {...mappedProps} value={value} onChange={(e) => setValue(e.target.value)} />
-        :
-        <Text type='text' {...mappedProps} value={value} onChange={(e) => setValue(e.target.value)} />
-      }
+      <div style={{position: 'relative'}}>
+        {startIcon && 
+        <Icon position='start' className="material-icons">
+          {startIcon}
+        </Icon>
+        }
+        {
+          props.multiline
+          ?
+          <MultiText {...mappedProps} value={value} onChange={(e) => setValue(e.target.value)} />
+          :
+          <Text type='text' {...mappedProps} value={value} onChange={(e) => setValue(e.target.value)} />
+        }
+        {endIcon &&
+        <Icon position='end' className="material-icons">
+          {endIcon}
+        </Icon>
+        }
+      </div>
     </Label>
     {
       helperText && 
@@ -50,6 +67,7 @@ const Container = styled.div`
     '--border-color: var(--border-color-focus);'}
 `
 const Label = styled.label`
+  position: relative;
   display: flex;
   flex-flow: column;
   row-gap: .2rem;
@@ -79,6 +97,8 @@ const genericinput = css`
   &:focus {
     border-color: var(--border-color-focus)
   }
+  ${({startIcon}) => startIcon && 'padding-left: 2rem'}
+  ${({endIcon}) => endIcon && 'padding-right: 2rem'}
 `
 const Text = styled.input`
   ${genericinput}
@@ -90,4 +110,16 @@ const MultiText = styled.textarea`
 const Helper = styled.span`
   color: var(--border-color);
   font-size: .8rem;
+`
+const Icon = styled.span`
+  position: absolute;
+  bottom: .6rem;
+  color: var(--border-color);
+  ${({position}) => {
+    switch(position) {
+      case 'start': return 'left: .2em';
+      case 'end': return 'right: .5em';
+      default: return ''
+    }
+  }}
 `
