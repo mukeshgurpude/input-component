@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
 
-export default function Input({value: Value, ...props}) {
+export default function Input({value: Value, helperText, ...props}) {
   const mappedProps = {
     disabled: !!props.disabled,
     error: !!props.error,
@@ -28,6 +28,10 @@ export default function Input({value: Value, ...props}) {
         <Text type='text' {...mappedProps} value={value} onChange={(e) => setValue(e.target.value)} />
       }
     </Label>
+    {
+      helperText && 
+      <Helper>{helperText}</Helper>
+    }
   </Container>
 }
 
@@ -55,7 +59,6 @@ const genericinput = css`
   border: 1.5px solid var(--border-color);
   border-radius: 3px;
   padding: .75rem 0.5rem;
-  margin-bottom: 1rem;
   outline: none;
 
   ${({size}) => {
@@ -63,6 +66,8 @@ const genericinput = css`
       case 'sm':
         return 'width: 20ch;'
       case 'md':
+        return 'width: 25ch;'
+      default:
         return 'width: 25ch;'
     }
   }}
@@ -81,4 +86,8 @@ const Text = styled.input`
 const MultiText = styled.textarea`
   ${genericinput}
   resize: none;
+`
+const Helper = styled.span`
+  color: var(--border-color);
+  font-size: .8rem;
 `
