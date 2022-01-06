@@ -49,6 +49,7 @@ export default function Main() {
     <InputContainer multiline text='multiline' />
     <InputContainer multiline text='multiline row="4"' row={4} />
     </Parent>
+    <div style={{marginTop: '1em'}}>Created by <a href='https://github.com/mukeshgurpude'>@mukeshgurpude</a> - devChallenges.io</div>
   </Container>
 }
 
