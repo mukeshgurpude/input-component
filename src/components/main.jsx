@@ -22,11 +22,16 @@ export function InputContainer ({children: Children, emulate, text, ...props}) {
 }
 
 export default function Main() {
+  const helper = 'Some interesting text'
   return <Container>
     <h3>Inputs</h3>
     <InputContainer children={Input} emulate text='' />
     <InputContainer children={Input} error emulate text='error' />
     <InputContainer children={Input} disabled text='disabled' />
+    <Parent>
+      <InputContainer children={Input} helperText={helper} text={`helperText=${helper}`}/>
+      <InputContainer children={Input} helperText={helper} error text={`helperText=${helper} error`}/>
+    </Parent>
     <InputContainer children={Input} value='Text' text='value="Text"' />
     <Parent>
       <InputContainer children={Input} size='sm' text='size="sm"' />
