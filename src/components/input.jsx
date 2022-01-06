@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
 
-export default function Input(props) {
+export default function Input({value: Value, ...props}) {
   const mappedProps = {
     disabled: !!props.disabled,
     error: !!props.error,
@@ -15,7 +15,7 @@ export default function Input(props) {
     placeholder: props.placeholder || "Placeholder",
   }
   const label = props.label || 'Label'
-  const [value, setValue] = useState(props.value || '');
+  const [value, setValue] = useState(Value || '');
 
   return <Container {...mappedProps}>
     <Label>
