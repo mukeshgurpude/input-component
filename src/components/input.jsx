@@ -25,7 +25,7 @@ export default function Input({
   return <Container {...mappedProps}>
     <Label>
       <span>{label}</span>
-      <div style={{position: 'relative'}}>
+      <div style={{position: 'relative', width: 'max-content'}}>
         {startIcon && 
         <Icon position='start' className="material-icons">
           {startIcon}
@@ -52,14 +52,19 @@ export default function Input({
   </Container>
 }
 
+
 const Container = styled.div`
-  --border-color: #828282;
-  --border-color-hover: #333333;
-  --border-color-focus: #2962FF;
-  ${({error}) => error && 
-    '--border-color: #D84949;--border-color-hover: #333;--border-color-focus: #D32F2F;'}
+  ${({error}) => error &&
+    `--border-color: var(--error-color);
+    --border-color-hover: var(--error-hover-color);
+    --border-color-focus: var(--error-focus-color);
+    `}
   ${({disabled}) => disabled &&
-    'opacity: 0.5;--border-color: #828282;--border-color-hover: #333333;--border-color-focus: #2962FF;'}
+    `opacity: 0.5;
+    --border-color: var(--disabled-color);
+    --border-color-hover: var(--disabled-hover-color);
+    --border-color-focus: var(--disabled-focus-color);
+    `}
 
   ${({hover}) => hover &&
     '--border-color: var(--border-color-hover);'}
@@ -92,13 +97,14 @@ const genericinput = css`
   ${({fullWidth}) => fullWidth && 'width: 100%;'}
 
   &:hover {
-    border-color: var(--border-color-hover)
+    --border-color: var(--border-color-hover)
   }
   &:focus {
-    border-color: var(--border-color-focus)
+    --border-color: var(--border-color-focus)
   }
   ${({startIcon}) => startIcon && 'padding-left: 2rem'}
   ${({endIcon}) => endIcon && 'padding-right: 2rem'}
+  ${({disabled}) => disabled && 'cursor: not-allowed;'}}
 `
 const Text = styled.input`
   ${genericinput}

@@ -24,22 +24,23 @@ export default function Sidebar() {
 const Header = styled.header`
   display: flex;
   flex-flow: column;
-  row-gap: 1rem;
+  row-gap: 2rem;
   padding: 1rem;
-  background-color: #FAFBFD;
+  color: var(--text-color);
+  background-color: var(--sidebar-color);
 `
 const Logo = styled.h2``
 const NavList = styled.ul`
   display: flex;
   flex-flow: column;
-  row-gap: 1rem;
+  row-gap: 2rem;
   list-style: none;
 `
 const NavItem = styled.li``
 const NavLink = styled.a`
-  color: #9E9E9E;
+  color: var(--navlink-color);
   font-size: 1rem;
   font-weight: 500;
   text-decoration: none !important;
-  ${props => props.active && ';color: #000;'}
+  ${props => props.active && ';color: var(--text-color);'}
 `

@@ -54,8 +54,10 @@ export default function Main() {
 
 const Container = styled.main`
   padding: 1rem;
-  color: #656565;
+  color: var(--main-text-color);
+  background-color: var(--background-color);
   width: 100%;
+  overflow-y: auto;
 `
 const Parent = styled.div`
   display: flex;
@@ -68,5 +70,5 @@ const Heading = styled.span`
   margin-top: 1em;
   padding: .5em 0;
   font-family: ubuntu-mono, monspace;
-  ${({normal}) => normal || 'color: #000;'}
+  ${({normal}) => !normal && 'color: var(--main-heading-color);'}
 `
