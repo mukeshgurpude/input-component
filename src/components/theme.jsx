@@ -4,8 +4,8 @@ import Icons from "./icon";
 export default function ThemeToggle({theme, changer}) {
   const next = theme === "light" ? "dark" : "light";
   return <Container>
-    <Button onClick={()=>changer('auto')} children={<Icons icon='sync' />} />
-    <Button onClick={()=>changer(next)}>
+    <Button title='Auto' onClick={()=>changer('auto')} children={<Icons icon='sync' />} />
+    <Button title={next} onClick={()=>changer(next)}>
       <Icons icon={next === "light" ? "light_mode" : "dark_mode"} />
     </Button>
   </Container>
@@ -13,14 +13,14 @@ export default function ThemeToggle({theme, changer}) {
 
 const Container = styled.aside`
   --side-padding: .4em;
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: .5rem;
   z-index: 100;
-  right: 1em;
+  right: 1.2em;
   background-color: var(--toggle-background);
   padding: 2em var(--side-padding) .4em var(--side-padding);
   border-radius: 0 0 2em 2em;
