@@ -7,7 +7,7 @@ export default function Sidebar() {
     {text: 'Buttons', link: '/buttons'},
     {text: 'Inputs', link: '/', active: true},
   ]
-  return <Header role='header'>
+  return <Header role='navigation'>
     <Logo><span style={{color: '#F7542E'}}>Dev</span>challenges.io</Logo>
     <NavList>
       {

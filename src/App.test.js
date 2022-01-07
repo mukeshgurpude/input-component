@@ -4,7 +4,7 @@ import App from './App';
 
 test('Sidebar exists in the document', () => {
   render(<App />);
-  const header = screen.getByRole('header');
+  const header = screen.getByRole('navigation');
   expect(header).toBeInTheDocument();
 });
 
