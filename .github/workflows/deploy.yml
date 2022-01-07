@@ -1,0 +1,31 @@
+name: Deploy to github pages
+
+on:
+  push:
+    branches:
+      - main
+      - deploy
+
+  workflow_dispatch:
+
+jobs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Quick setup
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git config --global user.name "Mukesh Gurpude"
+          git config --global user.email "mukeshgurpude02@gmail.com"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy
+        run: |
+          yarn build
+          yarn deploy
