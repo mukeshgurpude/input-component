@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
+import Icons from './icon';
 
 export default function Input({
     value: Value, helperText, 
@@ -26,11 +27,7 @@ export default function Input({
     <Label>
       <span>{label}</span>
       <div style={{position: 'relative', width: 'max-content'}}>
-        {startIcon && 
-        <Icon position='start' className="material-icons">
-          {startIcon}
-        </Icon>
-        }
+        {startIcon && <Icon position='start' children={<Icons icon={startIcon}/>}/>}
         {
           props.multiline
           ?
@@ -38,17 +35,11 @@ export default function Input({
           :
           <Text type='text' {...mappedProps} value={value} onChange={(e) => setValue(e.target.value)} />
         }
-        {endIcon &&
-        <Icon position='end' className="material-icons">
-          {endIcon}
-        </Icon>
-        }
+
+        {endIcon && <Icon position='end' children={<Icons icon={endIcon}/>}/>}
       </div>
     </Label>
-    {
-      helperText && 
-      <Helper>{helperText}</Helper>
-    }
+    {helperText && <Helper children={helperText}/>}
   </Container>
 }
 
@@ -119,11 +110,11 @@ const Helper = styled.span`
 `
 const Icon = styled.span`
   position: absolute;
-  bottom: .6rem;
+  bottom: .4rem;
   color: var(--border-color);
   ${({position}) => {
     switch(position) {
-      case 'start': return 'left: .2em';
+      case 'start': return 'left: .3em';
       case 'end': return 'right: .5em';
       default: return ''
     }

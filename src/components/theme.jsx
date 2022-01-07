@@ -22,7 +22,7 @@ const Container = styled.aside`
   z-index: 100;
   right: 1em;
   background-color: var(--toggle-background);
-  padding: 2em var(--side-padding) .8em var(--side-padding);
+  padding: 2em var(--side-padding) .4em var(--side-padding);
   border-radius: 0 0 2em 2em;
   box-shadow: 0 0 2em 4px var(--toggle-shadow);
 `
